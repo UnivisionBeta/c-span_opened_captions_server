@@ -16,14 +16,14 @@ const stream = fs.createWriteStream(fpath, {flags: 'a'})
 
 
 const socket = io.connect('https://openedcaptions.com:443')
-socket.on('word', data => {
+socket.on('word', function(data){
   //add additional formating such as downcase and a line breaks for occurences of`>>`
   const word = ' ' + data.data.body.toLowerCase().replace(/>>/g, "\n\n")
   stream.write(word)
   str += word      
 })
 
-http.createServer((req, res) => {
+http.createServer(function(req, res){
   const query = url.parse(req.url, true).query
   const offset = query.offset || 0
   res.end(str.substring(offset))
