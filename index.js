@@ -27,4 +27,4 @@ http.createServer(function(req, res){
   const query = url.parse(req.url, true).query
   const offset = query.offset || 0
   res.end(str.substring(offset))
-}).listen(5000)
+}).listen(8883)
